@@ -11,6 +11,7 @@
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
+    "cypress": "^13.6.2",
     "nyc": "^15.1.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -26,8 +27,8 @@
     "cy:run": "cypress run --e2e",
     "ct:open": "cypress open --component",
     "ct:run": "cypress run --component",
-    "pretest": "npm ci && rimraf .nyc_output .cache coverage dist",
-    "test": "start-test 3000 cy:run",
+    "test": "react-scripts test",
+    "test:run": "start-test 3000 cy:run",
     "eject": "react-scripts eject",
     "report": "nyc report --reporter=lcov --reporter=text",
     "lint:check": "npx eslint src --ext .js,.jsx,.ts,.tsx  --resolve-plugins-relative-to .eslintrc.json",
@@ -56,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.12.18",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0"
