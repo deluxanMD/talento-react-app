@@ -27,7 +27,6 @@
     "cy:run": "cypress run --e2e",
     "ct:open": "cypress open --component",
     "ct:run": "cypress run --component",
-    "pretest": "npm ci && rimraf .nyc_output .cache coverage dist",
     "test": "react-scripts test",
     "test:run": "start-test 3000 cy:run",
     "eject": "react-scripts eject",
