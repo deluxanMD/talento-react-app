@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
-    "cypress:run": "cypress run --e2e && cypress run --component",
+    "cypress:run": "npx cypress run --e2e && cypress run --component",
     "cy:open": "cypress open --e2e",
     "cy:run": "cypress run --e2e",
     "ct:open": "cypress open --component",
