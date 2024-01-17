@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import TLForm from "./tl-form.component";
 
-const Testcomponent = ({ devTool = false }) => {
+const Testcomponent = ({ devTool = false }: { devTool?: boolean }) => {
   const form = useForm();
 
   return (
