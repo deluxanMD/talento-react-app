@@ -1,6 +1,7 @@
 import React from "react";
 import { FormProvider } from "react-hook-form";
 import TLForm from "../components/forms/tl-form/tl-form.component";
+import { Button } from "@mui/material";
 
 type FormWrapperProps = {
   children: React.ReactNode;
@@ -15,6 +16,9 @@ export const FormWrapper = ({ children, formMethods }: FormWrapperProps) => {
       data-testid="TestForm"
     >
       {children}
+      <Button type="submit" data-testid="TestForm.Button">
+        Submit
+      </Button>
     </TLForm>
   );
 };

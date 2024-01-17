@@ -39,5 +39,5 @@ declare global {
 }
 
 Cypress.Commands.add("findByTestId", (selector, ...args) => {
-  return cy.get(`[data-testid=${selector}]`, ...args);
+  return cy.get(`[data-testid=${selector}]`.replace(/\./g, "\\."), ...args);
 });

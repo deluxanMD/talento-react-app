@@ -17,5 +17,6 @@ describe("<TLTextField />", () => {
   it("should load the component", () => {
     cy.mount(<Testcomponent />);
     cy.findByTestId("TLTextField").should("exist");
+    cy.findByTestId("TestForm.Button").click();
   });
 });
