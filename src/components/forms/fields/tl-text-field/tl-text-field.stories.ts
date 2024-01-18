@@ -20,5 +20,6 @@ export const ErrorMessage: Story = {
   args: {
     label: "with error",
     helperText: "something went wrong!",
+    error: true,
   },
 };
