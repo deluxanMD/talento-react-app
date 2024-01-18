@@ -6,7 +6,7 @@ type TLTextFieldProps = {
   name: string;
 } & TextFieldProps;
 
-const TLTextField = ({ name, ...rest }: TLTextFieldProps) => {
+export const TLTextField = ({ name, ...rest }: TLTextFieldProps) => {
   const { control } = useFormContext();
 
   return (
@@ -26,5 +26,3 @@ const TLTextField = ({ name, ...rest }: TLTextFieldProps) => {
     />
   );
 };
-
-export default TLTextField;
