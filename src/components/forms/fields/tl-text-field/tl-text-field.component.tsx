@@ -4,9 +4,14 @@ import { Controller, useFormContext } from "react-hook-form";
 
 type TLTextFieldProps = {
   name: string;
+  "data-testid"?: string;
 } & TextFieldProps;
 
-export const TLTextField = ({ name, ...rest }: TLTextFieldProps) => {
+export const TLTextField = ({
+  name,
+  "data-testid": dataTestId = "TLTextField",
+  ...rest
+}: TLTextFieldProps) => {
   const { control } = useFormContext();
 
   return (
@@ -16,7 +21,7 @@ export const TLTextField = ({ name, ...rest }: TLTextFieldProps) => {
       render={({ field, fieldState: { error } }) => (
         <TextField
           size="small"
-          data-testid="TLTextField"
+          data-testid={dataTestId}
           error={!!error}
           helperText={error?.message}
           {...field}
