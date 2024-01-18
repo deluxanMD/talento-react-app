@@ -10,15 +10,22 @@ const meta: Meta<typeof TLTextField> = {
 export default meta;
 type Story = StoryObj<typeof TLTextField>;
 
-export const Sample: Story = {
+export const TextField: Story = {
   args: {
-    label: "sample label",
+    label: "TextField",
+  },
+};
+
+export const PasswordField: Story = {
+  args: {
+    label: "Password Field",
+    type: "password",
   },
 };
 
 export const ErrorMessage: Story = {
   args: {
-    label: "with error",
+    label: "With Error",
     helperText: "something went wrong!",
     error: true,
   },
