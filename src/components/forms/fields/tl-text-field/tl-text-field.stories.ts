@@ -15,3 +15,10 @@ export const Sample: Story = {
     label: "sample label",
   },
 };
+
+export const ErrorMessage: Story = {
+  args: {
+    label: "with error",
+    helperText: "something went wrong!",
+  },
+};

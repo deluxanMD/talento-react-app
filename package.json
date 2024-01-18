@@ -48,7 +48,8 @@
     "coverage:verify": "npx nyc report --check-coverage true --lines 100",
     "coverage:check-files": "check-coverage src/index.tsx && check-coverage src/App.tsx && check-coverage src/components/Button.tsx && check-coverage src/components/Stepper.tsx && only-covered src/index.tsx src/App.tsx src/components/Button.tsx src/components/Stepper.tsx",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "eslintConfig": {
     "extends": [
@@ -79,6 +80,7 @@
     "@storybook/react": "^7.6.9",
     "@storybook/react-webpack5": "^7.6.9",
     "@storybook/test": "^7.6.9",
+    "chromatic": "^10.3.1",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -86,5 +88,7 @@
     "prop-types": "^15.8.1",
     "storybook": "^7.6.9",
     "webpack": "^5.89.0"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "talento-react-app@0.1.0"
 }
