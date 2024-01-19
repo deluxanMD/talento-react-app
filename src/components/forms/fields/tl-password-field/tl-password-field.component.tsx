@@ -19,6 +19,7 @@ export const TLPasswordField = ({
       control={control}
       render={({ field, fieldState: { error } }) => (
         <TextField
+          fullWidth
           type="password"
           size="small"
           data-testid={dataTestId}

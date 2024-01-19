@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { TLTextField } from "./tl-text-field.component";
 import { withRHF } from "../../../../test-utils/storybook/with-rhf";
+import { AccountCircle } from "@mui/icons-material";
 
 const meta: Meta<typeof TLTextField> = {
   component: TLTextField,
@@ -28,5 +29,13 @@ export const ErrorMessage: Story = {
     label: "With Error",
     helperText: "something went wrong!",
     error: true,
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    label: "With Icon",
+    Icon: AccountCircle,
+    variant: "standard",
   },
 };
