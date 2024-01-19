@@ -45,12 +45,3 @@ export const HelperText: Story = {
     helperText: "sample helper text",
   },
 };
-
-export const ErrorMessage: Story = {
-  args: {
-    label: "Error Message",
-    options,
-    helperText: "sample error message",
-    error: true,
-  },
-};

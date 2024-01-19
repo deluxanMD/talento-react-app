@@ -50,7 +50,11 @@ export const TLAutocompleteField = ({
           label={label}
           variant={variant}
           error={!!error}
-          helperText={!!error ? error.message : helperText}
+          helperText={
+            <span data-testid={`${dataTestId}.HelperText`}>
+              {!!error ? error.message : helperText}
+            </span>
+          }
         />
       )}
       ListboxProps={{

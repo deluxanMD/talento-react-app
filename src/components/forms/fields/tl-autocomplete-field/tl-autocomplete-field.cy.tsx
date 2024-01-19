@@ -1,11 +1,17 @@
 import { useForm } from "react-hook-form";
 import { Option, TLAutocompleteField } from "./tl-autocomplete-field.component";
 import { FormWrapper } from "test-utils/forms-test-utils";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 const options: Option[] = [
   { id: "one", label: "One" },
   { id: "two", label: "Two" },
 ];
+
+const schema = yup.object().shape({
+  test: yup.string().required(),
+});
 
 const TestComponent = ({
   dataTestId,
@@ -14,7 +20,7 @@ const TestComponent = ({
   dataTestId?: string;
   multiple?: boolean;
 }) => {
-  const form = useForm();
+  const form = useForm({ resolver: yupResolver(schema) });
   const testVal = form.watch("test");
 
   return (
@@ -62,7 +68,18 @@ describe("<TLAutocompleteField />", () => {
     cy.findByTestId("testValue").should("contain.text", "two");
   });
 
-  it("should clear the values", () => {
+  it("should clear the value", () => {
+    cy.mount(<TestComponent />);
+    cy.findByTestId("TLAutocompleteField").click();
+    cy.findByTestId("TLAutocompleteField.Listbox")
+      .findByRole("option")
+      .eq(0)
+      .click();
+    cy.findByTestId("CloseIcon").click();
+    cy.findByTestId("testValue").should("have.text", '""');
+  });
+
+  it("should clear multiple values", () => {
     cy.mount(<TestComponent multiple />);
     cy.findByTestId("TLAutocompleteField").click();
     cy.findByTestId("TLAutocompleteField.Listbox")
@@ -71,5 +88,14 @@ describe("<TLAutocompleteField />", () => {
       .click();
     cy.findByTestId("CloseIcon").click();
     cy.findByTestId("testValue").should("have.text", "[]");
+  });
+
+  it("should handle errors", () => {
+    cy.mount(<TestComponent />);
+    cy.findByTestId("TestForm.Button").click();
+    cy.findByTestId("TLAutocompleteField.HelperText").should(
+      "have.text",
+      "test is a required field"
+    );
   });
 });
