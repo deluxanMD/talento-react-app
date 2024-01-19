@@ -20,7 +20,7 @@ const TLForm = ({
 }: TLFormProps) => {
   return (
     <FormProvider {...formMethods}>
-      <Box data-testid={dataTestId} {...rest}>
+      <Box component="form" data-testid={dataTestId} {...rest}>
         {devTool && <DevTool control={formMethods.control} />}
         {children}
       </Box>
