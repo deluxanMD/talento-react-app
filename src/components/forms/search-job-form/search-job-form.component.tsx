@@ -55,6 +55,7 @@ export const SearchJobForm = () => {
               variant="contained"
               type="submit"
               loading={false}
+              Icon={SearchRounded}
               fullWidth
               onClick={form.handleSubmit(submit)}
             >

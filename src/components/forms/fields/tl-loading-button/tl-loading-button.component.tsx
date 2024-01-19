@@ -1,19 +1,21 @@
 import { LoadingButton } from "@mui/lab";
 import { ButtonProps } from "@mui/material";
-import { ReactNode } from "react";
 
 type TLLoadingButtonProps = {
   loading?: boolean;
+  Icon: any;
 } & ButtonProps;
 
 export const TLLoadingButton = ({
   variant,
   children,
+  Icon,
   ...rest
 }: TLLoadingButtonProps) => {
   return (
     <LoadingButton
       loadingPosition="start"
+      startIcon={<Icon />}
       variant={variant}
       data-testid="TLLoadingButton"
       sx={{ borderRadius: 0 }}
