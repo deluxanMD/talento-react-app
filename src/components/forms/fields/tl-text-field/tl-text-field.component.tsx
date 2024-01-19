@@ -11,6 +11,7 @@ export type TLTextFieldProps = {
 export const TLTextField = ({
   name,
   Icon,
+  helperText,
   "data-testid": dataTestId = "TLTextField",
   ...rest
 }: TLTextFieldProps) => {
@@ -21,7 +22,12 @@ export const TLTextField = ({
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: helperText || !!error ? "center" : "flex-end",
+          }}
+        >
           {!!Icon && (
             <Icon
               sx={{ color: "primary.main", mr: 1, my: 0.5 }}
@@ -33,7 +39,11 @@ export const TLTextField = ({
             size="small"
             data-testid={dataTestId}
             error={!!error}
-            helperText={error?.message}
+            helperText={
+              <span data-testid={`${dataTestId}.HelperText`}>
+                {!!error ? error.message : helperText}
+              </span>
+            }
             {...field}
             {...rest}
           />
