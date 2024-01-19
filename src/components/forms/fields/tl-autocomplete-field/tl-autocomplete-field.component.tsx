@@ -47,7 +47,12 @@ export const TLAutocompleteField = ({
       getOptionLabel={(option) => option.label}
       isOptionEqualToValue={isOptionEqualToValue}
       renderInput={(params) => (
-        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: helperText || !!error ? "center" : "flex-end",
+          }}
+        >
           {!!Icon && (
             <Icon
               sx={{ color: "primary.main", mr: 1, my: 0.5 }}
