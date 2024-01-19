@@ -1,4 +1,4 @@
-import { Autocomplete, TextField, TextFieldProps } from "@mui/material";
+import { Autocomplete, Box, TextField, TextFieldProps } from "@mui/material";
 import { useController } from "react-hook-form";
 import { useOnAutocompleteChange } from "./tl-autocomplete-field.hooks";
 
@@ -14,6 +14,7 @@ type TLAutocompleteField = {
   label: string;
   "data-testid"?: string;
   ListboxProps?: any;
+  Icon?: any;
   isOptionEqualToValue?: (option, value) => boolean;
 } & TextFieldProps;
 
@@ -26,6 +27,7 @@ export const TLAutocompleteField = ({
   helperText,
   "data-testid": dataTestId = "TLAutocompleteField",
   ListboxProps,
+  Icon,
   isOptionEqualToValue = (option, value) => option.id === value.id,
 }: TLAutocompleteField) => {
   const {
@@ -45,17 +47,25 @@ export const TLAutocompleteField = ({
       getOptionLabel={(option) => option.label}
       isOptionEqualToValue={isOptionEqualToValue}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          label={label}
-          variant={variant}
-          error={!!error}
-          helperText={
-            <span data-testid={`${dataTestId}.HelperText`}>
-              {!!error ? error.message : helperText}
-            </span>
-          }
-        />
+        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+          {!!Icon && (
+            <Icon
+              sx={{ color: "primary.main", mr: 1, my: 0.5 }}
+              data-testid={`${dataTestId}.Icon`}
+            />
+          )}
+          <TextField
+            {...params}
+            label={label}
+            variant={variant}
+            error={!!error}
+            helperText={
+              <span data-testid={`${dataTestId}.HelperText`}>
+                {!!error ? error.message : helperText}
+              </span>
+            }
+          />
+        </Box>
       )}
       ListboxProps={{
         "data-testid": `${dataTestId}.Listbox`,

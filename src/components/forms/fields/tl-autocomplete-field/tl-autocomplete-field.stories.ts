@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Option, TLAutocompleteField } from "./tl-autocomplete-field.component";
 import { withRHF } from "test-utils/storybook/with-rhf";
+import { AccountCircle } from "@mui/icons-material";
 
 const options: Option[] = [
   { id: "one", label: "One" },
@@ -43,5 +44,14 @@ export const HelperText: Story = {
     label: "Helper Text",
     options,
     helperText: "sample helper text",
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    label: "With Icon",
+    options,
+    Icon: AccountCircle,
+    variant: "standard",
   },
 };

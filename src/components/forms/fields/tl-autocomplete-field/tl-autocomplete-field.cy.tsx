@@ -3,6 +3,7 @@ import { Option, TLAutocompleteField } from "./tl-autocomplete-field.component";
 import { FormWrapper } from "test-utils/forms-test-utils";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { AccountCircle } from "@mui/icons-material";
 
 const options: Option[] = [
   { id: "one", label: "One" },
@@ -19,6 +20,7 @@ const TestComponent = ({
 }: {
   dataTestId?: string;
   multiple?: boolean;
+  Icon?: any;
 }) => {
   const form = useForm({ resolver: yupResolver(schema) });
   const testVal = form.watch("test");
@@ -97,5 +99,10 @@ describe("<TLAutocompleteField />", () => {
       "have.text",
       "test is a required field"
     );
+  });
+
+  it("should display icons", () => {
+    cy.mount(<TestComponent Icon={AccountCircle} />);
+    cy.findByTestId("TLAutocompleteField.Icon").should("exist");
   });
 });
