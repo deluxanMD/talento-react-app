@@ -34,10 +34,15 @@ declare global {
       // dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
       // visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
       findByTestId(selector: string): Chainable<any>;
+      findByRole(selector: string): Chainable<any>;
     }
   }
 }
 
 Cypress.Commands.add("findByTestId", (selector, ...args) => {
   return cy.get(`[data-testid=${selector}]`.replace(/\./g, "\\."), ...args);
+});
+
+Cypress.Commands.add("findByRole", (selector, ...args) => {
+  return cy.get(`[role=${selector}]`, ...args);
 });

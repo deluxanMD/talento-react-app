@@ -2,7 +2,7 @@ import React from "react";
 import { TextField, TextFieldProps } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
 
-type TLTextFieldProps = {
+export type TLTextFieldProps = {
   name: string;
   "data-testid"?: string;
 } & TextFieldProps;
