@@ -1,9 +1,7 @@
+import MainRoutes from "helpers/router/main-routes";
+
 function App() {
-  return (
-    <div className="App">
-      <p>app component</p>
-    </div>
-  );
+  return <MainRoutes />;
 }
 
 export default App;
