@@ -6,6 +6,7 @@ export const lightTheme = createTheme({
     mode: "light" as PaletteMode,
     primary: { main: "#6002ee" },
     secondary: { main: "#02bbee" },
+    common: { black: "#000000", white: "#ffffff" },
     error: {
       light: "red[200]",
       main: red[400],
@@ -30,6 +31,7 @@ export const darkTheme = createTheme({
     mode: "dark" as PaletteMode,
     primary: { main: "#6002ee" },
     secondary: { main: "#02bbee" },
+    common: { black: "#000000", white: "#ffffff" },
     error: {
       light: "red[200]",
       main: red[400],
