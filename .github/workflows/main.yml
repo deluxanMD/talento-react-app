@@ -101,7 +101,7 @@ jobs:
       - name: Install Node modules
         run: |
           npm ci &&
-          npm build
+          npm run build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
