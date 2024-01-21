@@ -111,7 +111,11 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./build s3://talento-bucket --delete
+        run: |
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+            aws s3 sync ./build s3://talento-bucket --delete
+          else if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/dev" ]]; then
+            aws s3 sync ./build s3://talento-bucket-dev --delete
 
   deploy-to-cloudfront:
     runs-on: ubuntu-latest
@@ -136,4 +140,8 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Invalidate cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
+        run: |
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+            aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
+          else if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/dev" ]]; then
+            aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DEV_DISTRIBUTION_ID }} --paths "/*"
