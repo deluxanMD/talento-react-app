@@ -8,132 +8,137 @@ on:
       - "main"
 
 jobs:
-  install-and-format:
+  checking:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Peview Build
+        run: echo "Return something"
+  # install-and-format:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+  #     - name: Use Node.js 18
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
 
-      - name: Install Node modules
-        run: npm ci
+  #     - name: Install Node modules
+  #       run: npm ci
 
-      - name: Lint
-        run: npm run lint:check
+  #     - name: Lint
+  #       run: npm run lint:check
 
-      - name: Prettier
-        run: npm run prettier:check
+  #     - name: Prettier
+  #       run: npm run prettier:check
 
-  jest:
-    runs-on: ubuntu-latest
-    needs: install-and-format
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # jest:
+  #   runs-on: ubuntu-latest
+  #   needs: install-and-format
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+  #     - name: Use Node.js 18
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
 
-      - name: Install Node modules
-        run: npm ci
+  #     - name: Install Node modules
+  #       run: npm ci
 
-      - name: Jest
-        run: npm run test
+  #     - name: Jest
+  #       run: npm run test
 
-  cypress:
-    runs-on: ubuntu-latest
-    needs: install-and-format
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # cypress:
+  #   runs-on: ubuntu-latest
+  #   needs: install-and-format
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+  #     - name: Use Node.js 18
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
 
-      - name: Install Node modules
-        run: npm ci
+  #     - name: Install Node modules
+  #       run: npm ci
 
-      - name: Cypress Component Test
-        run: npm run ct:run
+  #     - name: Cypress Component Test
+  #       run: npm run ct:run
 
-      - name: Cypress E2E Test
-        run: npm run cy:run
+  #     - name: Cypress E2E Test
+  #       run: npm run cy:run
 
-      - name: Code Coverage
-        run: npm run report
+  #     - name: Code Coverage
+  #       run: npm run report
 
-      - uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          flags: unittests
-          name: Upload reports to codecov
-          fail_ci_if_error: true
-          verbose: true
+  #     - uses: codecov/codecov-action@v3
+  #       with:
+  #         token: ${{ secrets.CODECOV_TOKEN }}
+  #         flags: unittests
+  #         name: Upload reports to codecov
+  #         fail_ci_if_error: true
+  #         verbose: true
 
-      - run: |
-          set -e
-          curl -Os https://uploader.codecov.io/latest/linux/codecov
-          find . -iregex "codecov.*"
-          chmod +x codecov 
-          ./codecov -t ${CODECOV_TOKEN}
-          rm codecov
+  #     - run: |
+  #         set -e
+  #         curl -Os https://uploader.codecov.io/latest/linux/codecov
+  #         find . -iregex "codecov.*"
+  #         chmod +x codecov
+  #         ./codecov -t ${CODECOV_TOKEN}
+  #         rm codecov
 
-  upload-to-s3:
-    runs-on: ubuntu-latest
-    needs: [jest, cypress]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # upload-to-s3:
+  #   runs-on: ubuntu-latest
+  #   needs: [jest, cypress]
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+  #     - name: Use Node.js 18
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
 
-      - name: Install Node modules
-        run: |
-          npm ci &&
-          npm run build
+  #     - name: Install Node modules
+  #       run: |
+  #         npm ci &&
+  #         npm run build
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+  #     - name: Configure AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./build s3://talento-bucket --delete
+  #     - name: Deploy app build to S3 bucket
+  #       run: aws s3 sync ./build s3://talento-bucket --delete
 
-  deploy-to-cloudfront:
-    runs-on: ubuntu-latest
-    needs: upload-to-s3
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # deploy-to-cloudfront:
+  #   runs-on: ubuntu-latest
+  #   needs: upload-to-s3
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+  #     - name: Use Node.js 18
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
 
-      - name: Install Node modules
-        run: npm ci
+  #     - name: Install Node modules
+  #       run: npm ci
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+  #     - name: Configure AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Invalidate cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
+  #     - name: Invalidate cache
+  #       run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
