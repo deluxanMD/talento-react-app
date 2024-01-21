@@ -40,6 +40,9 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install Node modules
+        run: npm ci
+
       - name: Jest
         run: npm run test
 
@@ -76,6 +79,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: Install Node modules
+        run: npm ci
 
       - name: Build Project
         run: npm run build
