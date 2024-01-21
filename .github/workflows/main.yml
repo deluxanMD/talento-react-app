@@ -46,7 +46,7 @@ jobs:
       - name: Jest
         run: npm run test
 
-  cypress-component:
+  cypress:
     runs-on: ubuntu-latest
     needs: install-and-format
     steps:
@@ -63,6 +63,9 @@ jobs:
 
       - name: Cypress Component Test
         run: npm run ct:run
+
+      - name: Cypress E2E Test
+        run: npm run cy:run
 
       - name: Code Coverage
         run: npm run report
@@ -83,27 +86,9 @@ jobs:
           ./codecov -t ${CODECOV_TOKEN}
           rm codecov
 
-  build:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install Node modules
-        run: npm ci
-
-      - name: Build Project
-        run: npm run build
-
   upload-to-s3:
     runs-on: ubuntu-latest
-    needs: build
+    needs: [jest, cypress]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -114,7 +99,9 @@ jobs:
           node-version: 18
 
       - name: Install Node modules
-        run: npm ci
+        run: |
+          npm ci &&
+          npm run build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -124,7 +111,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./build s3://cineplexity --delete
+        run: aws s3 sync ./build s3://talento-bucket --delete
 
   deploy-to-cloudfront:
     runs-on: ubuntu-latest
