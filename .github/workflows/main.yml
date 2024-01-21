@@ -145,3 +145,4 @@ jobs:
             aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
           else if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/dev" ]]; then
             aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DEV_DISTRIBUTION_ID }} --paths "/*"
+          fi
