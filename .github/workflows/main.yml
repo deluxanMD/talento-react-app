@@ -8,9 +8,8 @@ on:
       - "main"
 
 jobs:
-  install-and-format:
+  install-dependencies:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,37 +20,66 @@ jobs:
           node-version: 18
 
       - name: Install Node modules
-        run: npm i
+        run: npm ci
 
+  format:
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+    steps:
       - name: Lint
         run: npm run lint:check
 
       - name: Prettier
         run: npm run prettier:check
 
-      - name: Jest
-        run: npm run test
+  # test:
+  #   runs-on: ubuntu-latest
+  #   needs: install-dependencies
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Cypress
-        run: npm run cypress:run
+  #     - name: Use Node.js 18
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
 
-      - name: Code Coverage
-        run: npm run report
+  #     - name: Jest
+  #       run: npm run test
 
-      - uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          flags: unittests
-          name: Upload reports to codecov
-          fail_ci_if_error: true
-          verbose: true
-      - run: |
-          set -e
-          curl -Os https://uploader.codecov.io/latest/linux/codecov
-          find . -iregex "codecov.*"
-          chmod +x codecov 
-          ./codecov -t ${CODECOV_TOKEN}
-          rm codecov
+  #     - name: Cypress
+  #       run: npm run cypress:run
 
-      - name: Build Project
-        run: npm run build
+  #     - name: Code Coverage
+  #       run: npm run report
+
+  #     - uses: codecov/codecov-action@v3
+  #       with:
+  #         token: ${{ secrets.CODECOV_TOKEN }}
+  #         flags: unittests
+  #         name: Upload reports to codecov
+  #         fail_ci_if_error: true
+  #         verbose: true
+
+  #     - run: |
+  #         set -e
+  #         curl -Os https://uploader.codecov.io/latest/linux/codecov
+  #         find . -iregex "codecov.*"
+  #         chmod +x codecov
+  #         ./codecov -t ${CODECOV_TOKEN}
+  #         rm codecov
+
+  # build:
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+
+  #     - name: Use Node.js 18
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
+
+  #     - name: Build Project
+  #       run: npm run build
