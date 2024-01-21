@@ -114,8 +114,9 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
             aws s3 sync ./build s3://talento-bucket --delete
-          else if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/dev" ]]; then
+          elif [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/dev" ]]; then
             aws s3 sync ./build s3://talento-bucket-dev --delete
+          fi
 
   deploy-to-cloudfront:
     runs-on: ubuntu-latest
