@@ -111,7 +111,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./build s3://cineplexity --delete
+        run: aws s3 sync ./build s3://talento-bucket --delete
 
   deploy-to-cloudfront:
     runs-on: ubuntu-latest
