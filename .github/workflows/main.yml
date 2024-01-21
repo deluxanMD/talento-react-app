@@ -28,7 +28,7 @@ jobs:
       - name: Prettier
         run: npm run prettier:check
 
-  test:
+  jest:
     runs-on: ubuntu-latest
     needs: install-and-format
     steps:
@@ -46,8 +46,56 @@ jobs:
       - name: Jest
         run: npm run test
 
-      - name: Cypress
-        run: npm run cypress:run
+  cypress-component:
+    runs-on: ubuntu-latest
+    needs: install-and-format
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Node modules
+        run: npm ci
+
+      - name: Cypress Component Test
+        run: npm run ct:run
+
+  cypress-e2e:
+    runs-on: ubuntu-latest
+    needs: install-and-format
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Node modules
+        run: npm ci
+
+      - name: Cypress E2E Test
+        run: npm run cy:run
+
+  upload-code-coverage:
+    runs-on: ubuntu-latest
+    needs: [jest, cypress-component, cypress-e2e]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Node modules
+        run: npm ci
 
       - name: Code Coverage
         run: npm run report
@@ -70,7 +118,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: test
+    needs: upload-code-coverage
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -99,7 +147,9 @@ jobs:
           node-version: 18
 
       - name: Install Node modules
-        run: npm ci
+        run: |
+          npm ci &&
+          npm build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
