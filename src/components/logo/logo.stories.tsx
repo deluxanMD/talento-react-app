@@ -8,4 +8,14 @@ const meta: Meta<typeof Logo> = {
 export default meta;
 type Story = StoryObj<typeof Logo>;
 
-export const Sample: Story = {};
+export const WithName: Story = {
+  args: {
+    withName: true,
+  },
+};
+
+export const WithoutName: Story = {
+  args: {
+    withName: false,
+  },
+};
