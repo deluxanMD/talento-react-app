@@ -1,22 +1,33 @@
 import { Work } from "@mui/icons-material";
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, BoxProps, Typography } from "@mui/material";
 
-export const Logo = () => {
+type LogoProps = {
+  withName?: boolean;
+} & BoxProps;
+
+export const Logo = ({ withName = false, ...rest }: LogoProps) => {
   return (
-    <Box display="flex" alignItems="center" data-testid="Logo.Container">
+    <Box
+      display="flex"
+      alignItems="center"
+      data-testid="Logo.Container"
+      {...rest}
+    >
       <Avatar sx={{ bgcolor: "primary.main" }}>
         <Work sx={{ color: "common.white" }} />
       </Avatar>
-      <Typography
-        variant="h4"
-        ml={1}
-        sx={{
-          textTransform: "uppercase",
-          color: "primary.main",
-        }}
-      >
-        Talento
-      </Typography>
+      {!!withName && (
+        <Typography
+          variant="h6"
+          ml={1}
+          sx={{
+            textTransform: "uppercase",
+            color: "primary.main",
+          }}
+        >
+          Talento
+        </Typography>
+      )}
     </Box>
   );
 };
