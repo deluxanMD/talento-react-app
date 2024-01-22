@@ -33,6 +33,11 @@ describe("<TLAppbar />", () => {
     cy.findByTestId("MenuIcon").should("exist");
 
     cy.findByTestId("AppBar.Mobile.Menu").should("exist");
+
+    cy.findByTestId("AppBar.Mobile.MenuItem").should("be.hidden");
+    cy.findByTestId("MenuIcon").click();
+    cy.findByTestId("AppBar.Mobile.MenuItem").should("be.visible");
+
     cy.findByTestId("AppBar.Mobile.MenuItem").should("have.length", 4);
     cy.findByTestId("AppBar.Mobile.MenuItem").eq(0).should("have.text", "Jobs");
     cy.findByTestId("AppBar.Mobile.MenuItem")
@@ -44,6 +49,9 @@ describe("<TLAppbar />", () => {
     cy.findByTestId("AppBar.Mobile.MenuItem")
       .eq(3)
       .should("have.text", "Signup");
+
+    cy.findByTestId("AppBar.Mobile.MenuItem").eq(0).click();
+    cy.findByTestId("AppBar.Mobile.MenuItem").eq(0).should("be.hidden");
 
     cy.findByTestId("AppBar.Desktop.Login").should("be.hidden");
     cy.findByTestId("AppBar.Desktop.Signup").should("be.hidden");
