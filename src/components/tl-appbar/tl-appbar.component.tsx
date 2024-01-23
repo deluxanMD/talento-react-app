@@ -14,7 +14,7 @@ import {
 import { TLButton } from "components/forms/fields/tl-button/tl-button.component";
 import { MouseEvent, useState } from "react";
 
-const pages = ["Jobs", "Companies"];
+const pages = ["Talents", "Members"];
 
 export const TLAppbar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -31,7 +31,7 @@ export const TLAppbar = () => {
     <AppBar
       position="static"
       color="transparent"
-      elevation={1}
+      elevation={0}
       data-testid="AppBar.Container"
     >
       <Container maxWidth="xl">

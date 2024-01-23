@@ -13,7 +13,7 @@ export const Logo = ({ withName = false, ...rest }: LogoProps) => {
       data-testid="Logo.Container"
       {...rest}
     >
-      <Avatar sx={{ bgcolor: "primary.main" }}>
+      <Avatar sx={{ bgcolor: "primary.main" }} variant="square">
         <Work sx={{ color: "common.white" }} />
       </Avatar>
       {!!withName && (

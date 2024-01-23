@@ -1,9 +1,12 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
+import { SearchJobForm } from "components/forms/search-job-form/search-job-form.component";
+import { Header } from "components/header/header.component";
+import { Headline } from "components/headline/headline.component";
 
 export const HomePage = () => {
   return (
-    <Box data-testid="HomePage.Container">
-      <Typography>Homepage Component for Dev</Typography>
-    </Box>
+    <Container maxWidth="xl" data-testid="HomePage.Container">
+      <Header />
+    </Container>
   );
 };
