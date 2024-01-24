@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { SearchJobForm } from "components/forms/search-job-form/search-job-form.component";
 import { Headline } from "components/headline/headline.component";
 
