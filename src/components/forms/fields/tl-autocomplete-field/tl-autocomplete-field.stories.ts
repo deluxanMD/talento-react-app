@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Option, TLAutocompleteField } from "./tl-autocomplete-field.component";
 import { withRHF } from "test-utils/storybook/with-rhf";
 import { AccountCircle } from "@mui/icons-material";
+import { withReduxProvider } from "test-utils/storybook/with-redux-provider";
 
 const options: Option[] = [
   { id: "one", label: "One" },
@@ -10,7 +11,7 @@ const options: Option[] = [
 
 const meta: Meta<typeof TLAutocompleteField> = {
   component: TLAutocompleteField,
-  decorators: withRHF,
+  decorators: [withRHF, withReduxProvider],
 };
 
 export default meta;
