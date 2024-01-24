@@ -10,10 +10,10 @@ describe("<TLAppbar />", () => {
     cy.findByTestId("AppBar.Desktop.MenuItem").should("have.length", 2);
     cy.findByTestId("AppBar.Desktop.MenuItem")
       .eq(0)
-      .should("have.text", "Jobs");
+      .should("have.text", "Talents");
     cy.findByTestId("AppBar.Desktop.MenuItem")
       .eq(1)
-      .should("have.text", "Companies");
+      .should("have.text", "Members");
 
     cy.findByTestId("MenuIcon").should("be.hidden");
 
