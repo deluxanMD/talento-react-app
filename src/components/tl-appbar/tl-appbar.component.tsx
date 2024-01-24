@@ -34,7 +34,7 @@ export const TLAppbar = () => {
       elevation={0}
       data-testid="AppBar.Container"
     >
-      <Container maxWidth="xl">
+      <Container maxWidth={false}>
         <Toolbar disableGutters>
           <Logo withName sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
 
