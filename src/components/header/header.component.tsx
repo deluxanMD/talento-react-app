@@ -1,12 +1,32 @@
-import { Paper, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { SearchJobForm } from "components/forms/search-job-form/search-job-form.component";
 import { Headline } from "components/headline/headline.component";
 
 export const Header = () => {
+  const imageURL =
+    "https://cdn.create.vista.com/api/media/medium/132339176/stock-photo-happy-beautiful-young-woman-showing-way-with-fingers?token=";
+
   return (
-    <Paper sx={{ p: 3, borderRadius: 0 }} data-testid="Header">
+    <Box
+      sx={{
+        p: 3,
+        borderRadius: 0,
+        width: "100%",
+        height: "500px",
+        backgroundImage: `url(${imageURL})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+      data-testid="Header"
+    >
       <Headline mt={4} mb={2} />
-      <Typography mb={4} color="GrayText" data-testid="Header.Description">
+      <Typography
+        mt={4}
+        mb={6}
+        color="GrayText"
+        data-testid="Header.Description"
+      >
         Great platform for the talent seeker <br /> who seeking to learn new
         talents.
       </Typography>
@@ -14,6 +34,6 @@ export const Header = () => {
       <Typography mt={2} color="GrayText" data-testid="Header.Popular">
         Popular: UI Design, Javascript
       </Typography>
-    </Paper>
+    </Box>
   );
 };
