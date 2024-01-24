@@ -33,8 +33,19 @@ describe("<TLAppbar />", () => {
 
     cy.findByTestId("AppBar.Theme.Toggle").should("exist");
     cy.findByTestId("DarkModeIcon").should("exist");
+    cy.window()
+      .its("store")
+      .invoke("getState")
+      .its("theme")
+      .should("deep.equal", { mode: "light" });
+
     cy.findByTestId("AppBar.Theme.Toggle").click();
     cy.findByTestId("LightModeIcon").should("exist");
+    cy.window()
+      .its("store")
+      .invoke("getState")
+      .its("theme")
+      .should("deep.equal", { mode: "dark" });
   });
 
   it("mobile", () => {

@@ -1,27 +1,27 @@
-import { defineConfig } from 'cypress'
-import '@cypress/instrument-cra'
+import { defineConfig } from "cypress";
+import "@cypress/instrument-cra";
 
 export default defineConfig({
   env: {
     codeCoverage: {
-      exclude: 'cypress/**/*.*'
-    }
+      exclude: "cypress/**/*.*",
+    },
   },
   e2e: {
     setupNodeEvents(on, config) {
-      require('@cypress/code-coverage/task')(on, config)
-      return config
-    }
+      require("@cypress/code-coverage/task")(on, config);
+      return config;
+    },
   },
 
   component: {
     devServer: {
-      framework: 'create-react-app',
-      bundler: 'webpack'
+      framework: "create-react-app",
+      bundler: "webpack",
     },
     setupNodeEvents(on, config) {
-      require('@cypress/code-coverage/task')(on, config)
-      return config
-    }
-  }
-})
+      require("@cypress/code-coverage/task")(on, config);
+      return config;
+    },
+  },
+});
