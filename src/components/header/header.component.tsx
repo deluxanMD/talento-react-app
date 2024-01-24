@@ -12,7 +12,7 @@ export const Header = () => {
         p: 3,
         borderRadius: 0,
         width: "100%",
-        height: "500px",
+        height: "580px",
         backgroundImage: `url(${imageURL})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
