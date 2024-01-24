@@ -1,9 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Container } from "@mui/material";
+import { Header } from "components/header/header.component";
 
 export const HomePage = () => {
   return (
-    <Box data-testid="HomePage.Container">
-      <Typography>Homepage Component for Dev</Typography>
-    </Box>
+    <Container maxWidth="xl" data-testid="HomePage.Container">
+      <Header />
+    </Container>
   );
 };
