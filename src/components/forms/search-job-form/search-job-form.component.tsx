@@ -31,7 +31,7 @@ export const SearchJobForm = () => {
             alignItems: "center",
           }}
         >
-          <Grid item xs={12} sm={5}>
+          <Grid item xs={12} sm={12} md={5}>
             <TLTextField
               name="keyword"
               label="Job Title"
@@ -40,7 +40,7 @@ export const SearchJobForm = () => {
               data-testid="SearchJobForm.Keyword"
             />
           </Grid>
-          <Grid item xs={12} sm={5}>
+          <Grid item xs={12} sm={12} md={5}>
             <TLAutocompleteField
               name="country"
               label="Country"
@@ -50,7 +50,7 @@ export const SearchJobForm = () => {
               data-testid="SearchJobForm.Country"
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={12} md={2}>
             <TLLoadingButton
               variant="contained"
               type="submit"

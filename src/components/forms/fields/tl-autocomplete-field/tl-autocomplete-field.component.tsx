@@ -7,7 +7,7 @@ export type Option = {
   label: string;
 };
 
-type TLAutocompleteField = {
+type TLAutocompleteFieldProps = {
   name: string;
   options: Option[];
   multiple?: boolean;
@@ -29,7 +29,7 @@ export const TLAutocompleteField = ({
   ListboxProps,
   Icon,
   isOptionEqualToValue = (option, value) => option.id === value.id,
-}: TLAutocompleteField) => {
+}: TLAutocompleteFieldProps) => {
   const {
     field,
     fieldState: { error },
