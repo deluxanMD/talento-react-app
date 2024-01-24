@@ -25,7 +25,6 @@ export const SearchJobForm = () => {
           container
           spacing={2}
           sx={{
-            backgroundColor: "white",
             padding: 2,
             justifyContent: "space-between",
             alignItems: "center",
