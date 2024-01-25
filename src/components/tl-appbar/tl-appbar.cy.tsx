@@ -51,6 +51,8 @@ describe("<TLAppbar />", () => {
       .its("theme")
       .should("deep.equal", { mode: "dark" });
 
+    cy.findByTestId("AppBar.Theme.Toggle").click();
+
     cy.window().its("store").invoke("dispatch", setMode("light"));
 
     cy.findByTestId("DarkModeIcon").should("exist");
