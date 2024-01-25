@@ -4,7 +4,7 @@ import "@cypress/instrument-cra";
 export default defineConfig({
   env: {
     codeCoverage: {
-      exclude: "cypress/**/*.*",
+      exclude: ["cypress/**/*.*", "src/store.ts"],
     },
   },
   e2e: {
