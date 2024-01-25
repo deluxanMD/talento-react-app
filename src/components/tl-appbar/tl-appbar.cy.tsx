@@ -51,6 +51,17 @@ describe("<TLAppbar />", () => {
       .invoke("getState")
       .its("theme")
       .should("deep.equal", { mode: "dark" });
+
+    cy.window()
+      .its("store")
+      .invoke("dispatch", { type: "theme/setMode", payload: "light" });
+
+    cy.findByTestId("DarkModeIcon").should("exist");
+    cy.window()
+      .its("store")
+      .invoke("getState")
+      .its("theme")
+      .should("deep.equal", { mode: "light" });
   });
 
   it("mobile", () => {
