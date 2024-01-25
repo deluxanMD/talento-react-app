@@ -1,4 +1,5 @@
 import { Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { SearchJobForm } from "components/forms/search-job-form/search-job-form.component";
 import { Headline } from "components/headline/headline.component";
 import CoverImg from "../../assets/images/model-office-outfit.png";
@@ -31,6 +32,7 @@ export const Header = () => {
       <Typography mt={2} color="GrayText" data-testid="Header.Popular">
         Popular: UI Design, Javascript
       </Typography>
+    </Paper>
     </Paper>
   );
 };
