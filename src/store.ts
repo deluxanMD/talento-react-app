@@ -7,5 +7,9 @@ export const store = configureStore({
   },
 });
 
+if (window.Cypress) {
+  window.store = store;
+}
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

@@ -1,9 +1,19 @@
+import { ReduxWrapper } from "test-utils/redux-test-utils";
 import { TLAppbar } from "./tl-appbar.component";
+import { setMode } from "global/theme/theme.slice";
+
+const TestComponent = () => {
+  return (
+    <ReduxWrapper>
+      <TLAppbar />
+    </ReduxWrapper>
+  );
+};
 
 describe("<TLAppbar />", () => {
   it("desktop", () => {
     cy.viewport(1080, 720);
-    cy.mount(<TLAppbar />);
+    cy.mount(<TestComponent />);
 
     cy.findByTestId("AppBar.Container").should("exist");
     cy.findByTestId("AppBar.Desktop.Menu").should("exist");
@@ -21,10 +31,40 @@ describe("<TLAppbar />", () => {
 
     cy.findByTestId("AppBar.Desktop.Login").should("exist");
     cy.findByTestId("AppBar.Desktop.Signup").should("exist");
+
+    cy.findByTestId("AppBar.Theme.Toggle").should("exist");
+    cy.findByTestId("DarkModeIcon").should("exist");
+    cy.window()
+      .its("store")
+      .invoke("getState")
+      .its("theme")
+      .should("deep.equal", { mode: "light" });
+
+    cy.findByTestId("AppBar.Theme.Toggle").click();
+
+    cy.window().its("store").invoke("dispatch", setMode("dark"));
+
+    cy.findByTestId("LightModeIcon").should("exist");
+    cy.window()
+      .its("store")
+      .invoke("getState")
+      .its("theme")
+      .should("deep.equal", { mode: "dark" });
+
+    cy.findByTestId("AppBar.Theme.Toggle").click();
+
+    cy.window().its("store").invoke("dispatch", setMode("light"));
+
+    cy.findByTestId("DarkModeIcon").should("exist");
+    cy.window()
+      .its("store")
+      .invoke("getState")
+      .its("theme")
+      .should("deep.equal", { mode: "light" });
   });
 
   it("mobile", () => {
-    cy.mount(<TLAppbar />);
+    cy.mount(<TestComponent />);
 
     cy.findByTestId("AppBar.Container").should("exist");
     cy.findByTestId("AppBar.Desktop.Menu").should("be.hidden");
