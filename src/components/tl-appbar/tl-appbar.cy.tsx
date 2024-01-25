@@ -1,5 +1,6 @@
 import { ReduxWrapper } from "test-utils/redux-test-utils";
 import { TLAppbar } from "./tl-appbar.component";
+import { setMode } from "global/theme/theme.slice";
 
 const TestComponent = () => {
   return (
@@ -41,9 +42,7 @@ describe("<TLAppbar />", () => {
 
     cy.findByTestId("AppBar.Theme.Toggle").click();
 
-    cy.window()
-      .its("store")
-      .invoke("dispatch", { type: "theme/setMode", payload: "dark" });
+    cy.window().its("store").invoke("dispatch", setMode("dark"));
 
     cy.findByTestId("LightModeIcon").should("exist");
     cy.window()
@@ -52,9 +51,7 @@ describe("<TLAppbar />", () => {
       .its("theme")
       .should("deep.equal", { mode: "dark" });
 
-    cy.window()
-      .its("store")
-      .invoke("dispatch", { type: "theme/setMode", payload: "light" });
+    cy.window().its("store").invoke("dispatch", setMode("light"));
 
     cy.findByTestId("DarkModeIcon").should("exist");
     cy.window()

@@ -15,6 +15,7 @@ export default defineConfig({
   },
 
   component: {
+    excludeSpecPattern: ["src/store.ts"],
     devServer: {
       framework: "create-react-app",
       bundler: "webpack",

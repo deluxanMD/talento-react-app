@@ -1,3 +1,4 @@
+import { CssBaseline } from "@mui/material";
 import ThemeWrapper from "helpers/theme/theme.wrapper";
 import { ReactNode } from "react";
 import { Provider } from "react-redux";
@@ -10,7 +11,10 @@ type ReduxWrapperProps = {
 export const ReduxWrapper = ({ children }: ReduxWrapperProps) => {
   return (
     <Provider store={store}>
-      <ThemeWrapper>{children}</ThemeWrapper>
+      <ThemeWrapper>
+        <CssBaseline />
+        {children}
+      </ThemeWrapper>
     </Provider>
   );
 };

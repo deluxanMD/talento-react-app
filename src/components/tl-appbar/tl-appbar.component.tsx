@@ -36,7 +36,14 @@ export const TLAppbar = () => {
   };
 
   const handleThemeMode = () => {
-    dispatch(setMode(mode === "light" ? "dark" : "light"));
+    switch (mode) {
+      case "light":
+        dispatch(setMode("dark"));
+        break;
+      case "dark":
+        dispatch(setMode("light"));
+        break;
+    }
   };
 
   return (
