@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { TLLoadingButton } from "./tl-loading-button.component";
 import { SearchRounded } from "@mui/icons-material";
+import { withReduxProvider } from "test-utils/storybook/with-redux-provider";
 
 const meta: Meta<typeof TLLoadingButton> = {
   component: TLLoadingButton,
+  decorators: [withReduxProvider],
 };
 
 export default meta;

@@ -2,10 +2,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { TLTextField } from "./tl-text-field.component";
 import { withRHF } from "../../../../test-utils/storybook/with-rhf";
 import { AccountCircle } from "@mui/icons-material";
+import { withReduxProvider } from "test-utils/storybook/with-redux-provider";
 
 const meta: Meta<typeof TLTextField> = {
   component: TLTextField,
-  decorators: withRHF,
+  decorators: [withRHF, withReduxProvider],
 };
 
 export default meta;

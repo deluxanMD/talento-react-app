@@ -5,8 +5,12 @@ export const Headline = ({ ...rest }: BoxProps) => {
 
   return (
     <Box {...rest} data-testid="Headline">
-      <Typography variant="h4">Discover</Typography>
-      <Typography variant="h4">more than</Typography>
+      <Typography variant="h4" color="primary">
+        Discover
+      </Typography>
+      <Typography variant="h4" color="primary">
+        more than
+      </Typography>
       <Typography variant="h4" color="secondary">
         5000<sup style={{ fontSize: 24 }}>+</sup> talents
       </Typography>
