@@ -1,7 +1,6 @@
 import { Paper, Typography } from "@mui/material";
 import { SearchJobForm } from "components/forms/search-job-form/search-job-form.component";
 import { Headline } from "components/headline/headline.component";
-import CoverImg from "../../assets/images/model-office-outfit.png";
 
 export const Header = () => {
   return (
@@ -10,10 +9,7 @@ export const Header = () => {
         p: 3,
         height: 660,
         borderRadius: 0,
-        backgroundImage: `url(${CoverImg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "30% 25%",
-        backgroundRepeat: "no-repeat",
+        backgroundColor: "#2f194c",
       }}
       data-testid="Header"
     >
