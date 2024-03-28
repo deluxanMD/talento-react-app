@@ -1,7 +1,6 @@
 import { Paper, Typography } from "@mui/material";
 import { SearchJobForm } from "components/forms/search-job-form/search-job-form.component";
 import { Headline } from "components/headline/headline.component";
-import CoverImage from "assets/images/cover.jpeg";
 
 export const Header = () => {
   return (
